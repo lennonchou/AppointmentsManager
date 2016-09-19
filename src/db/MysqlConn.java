@@ -167,16 +167,17 @@ public class MysqlConn {
 	private boolean insertAppointment(String doctorId, int date, int time, String name, String gender, String phoneNo, String problem) {
 		//wrap the appointment into a preparedstatement
 		try {
-			String sql = "INSERT INTO appointment VALUES(?, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO appointment VALUES(?,?,?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, doctorId);
-			ps.setInt(2, date);
-			ps.setInt(3, time);
-			ps.setString(4, name);
+			ps.setInt(3, date);
+			ps.setInt(4, time);
+			ps.setString(2, name);
 			ps.setString(5, gender);
 			ps.setString(6, phoneNo);
 			ps.setString(7, problem);
-			ps.executeQuery();
+			System.out.println("\nDBConnection executing query:\n" + sql);
+			ps.executeUpdate();
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -230,7 +231,7 @@ public class MysqlConn {
 	}
 	public static void main(String[] args) throws JSONException {
 //		MysqlConn c = new MysqlConn();
-//		if (c.setSelectedAppointment("D021", 1, 9, "", "", "", "")) {
+//		if (c.setSelectedAppointment("D021", 0, 8, "", "", "", "")) {
 //			System.out.println("YES");
 //		}
 //		System.out.println(c.getDoctorDetail("D021").toString());
