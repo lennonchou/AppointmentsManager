@@ -67,7 +67,10 @@ public class MysqlConn {
 			ps.setInt(1, date);
 			ps.setInt(2, time);
 			ps.setString(3, doctorId);
-			ps.executeQuery();
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				return false;
+			}
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -230,7 +233,8 @@ public class MysqlConn {
 		return null;
 	}
 	public static void main(String[] args) throws JSONException {
-//		MysqlConn c = new MysqlConn();
+		MysqlConn c = new MysqlConn();
+//		System.out.print(c.checkAppointmentAvailability("D001", 0, 9));
 //		if (c.setSelectedAppointment("D021", 0, 8, "", "", "", "")) {
 //			System.out.println("YES");
 //		}
